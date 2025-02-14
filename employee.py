@@ -95,6 +95,48 @@ class employeeClass:
         btn_delete=Button(self.root,text="Delete",font=("goudy old style",15),bg="#f44336",fg="white",cursor="hand2").place(x=740,y=305,width=110,height=28)
         btn_clear=Button(self.root,text="Clear",font=("goudy old style",15),bg="#607d8b",fg="white",cursor="hand2").place(x=860,y=305,width=110,height=28)
 
+        #=== Employee Details ===
+
+        emp_frame=Frame(self.root,bd=3,relief=RIDGE)
+        emp_frame.place(x=0,y=350,relwidth=1,height=150)
+
+        scrolly=Scrollbar(emp_frame,orient=VERTICAL)
+        scrollx=Scrollbar(emp_frame,orient=HORIZONTAL)
+
+        self.EmployeeTable=ttk.Treeview(emp_frame,columns=("eid","name","email","gender","contact","dob","doj","pass","utype","address","salary"),yscrollcommand=scrolly.set,xscrollcommand=scrollx.set)
+        scrollx.pack(side=BOTTOM,fill=X)
+        scrolly.pack(side=RIGHT,fill=Y)
+        scrollx.config(command=self.EmployeeTable.xview)
+        scrolly.config(command=self.EmployeeTable.yview)
+        self.EmployeeTable.heading("eid",text="EMP ID")
+        self.EmployeeTable.heading("name",text="NAME")
+        self.EmployeeTable.heading("email",text="EMAIL")
+        self.EmployeeTable.heading("gender",text="GENDER")
+        self.EmployeeTable.heading("contact",text="CONTACT")
+        self.EmployeeTable.heading("dob",text="D.O.B")
+        self.EmployeeTable.heading("doj",text="D.O.J")
+        self.EmployeeTable.heading("pass",text="PASSWORD")
+        self.EmployeeTable.heading("utype",text="USERTYPE")
+        self.EmployeeTable.heading("address",text="ADDRESS")
+        self.EmployeeTable.heading("salary",text="SALARY")
+
+        self.EmployeeTable["show"]="headings"
+
+        self.EmployeeTable.column("eid",width=90)
+        self.EmployeeTable.column("name",width=100)
+        self.EmployeeTable.column("email",width=100)
+        self.EmployeeTable.column("gender",width=100)
+        self.EmployeeTable.column("contact",width=100)
+        self.EmployeeTable.column("dob",width=100)
+        self.EmployeeTable.column("doj",width=100)
+        self.EmployeeTable.column("pass",width=100)
+        self.EmployeeTable.column("utype",width=100)
+        self.EmployeeTable.column("address",width=100)
+        self.EmployeeTable.column("salary",width=100)
+
+        self.EmployeeTable.pack(fill=BOTH,expand=1)
+
+
 
 
 if __name__=="__main__":
