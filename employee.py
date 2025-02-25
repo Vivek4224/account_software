@@ -1,6 +1,7 @@
 from tkinter import*
 from PIL import Image,ImageTk
-from tkinter import ttk
+from tkinter import ttk,messagebox
+import sqlite3
 class employeeClass:
     def __init__(self,root):
         self.root=root
@@ -90,7 +91,7 @@ class employeeClass:
         txt_salary=Entry(self.root,textvariable=self.var_salary,font=("goudy old style",15),bg="lightyellow").place(x=600,y=270,width=180)
 
         #=== Buttons ===
-        btn_add=Button(self.root,text="Save",font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=500,y=305,width=110,height=28)
+        btn_add=Button(self.root,text="Save",command=self.add,font=("goudy old style",15),bg="#2196f3",fg="white",cursor="hand2").place(x=500,y=305,width=110,height=28)
         btn_update=Button(self.root,text="Update",font=("goudy old style",15),bg="#4caf50",fg="white",cursor="hand2").place(x=620,y=305,width=110,height=28)
         btn_delete=Button(self.root,text="Delete",font=("goudy old style",15),bg="#f44336",fg="white",cursor="hand2").place(x=740,y=305,width=110,height=28)
         btn_clear=Button(self.root,text="Clear",font=("goudy old style",15),bg="#607d8b",fg="white",cursor="hand2").place(x=860,y=305,width=110,height=28)
@@ -136,6 +137,17 @@ class employeeClass:
 
         self.EmployeeTable.pack(fill=BOTH,expand=1)
 
+#=======================================================================
+
+    def add(self):
+        con=sqlite3.connect(database=r'ims.db')
+        cur=con.cursor()
+        try:
+            if self.var_emp_id.get()=="":
+                messagebox.showerror("Error","Employee ID Must be required",parent=root)
+
+        except Exception as ex:
+            messagebox.showerror("Error",f"Error due to : {str(ex)}")
 
 
 
